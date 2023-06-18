@@ -2,6 +2,12 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Pluralsight
+
+React 17: Getting Started...
+
+- > Make buttons function with useState Hook
+
 ## Available Scripts
 
 In the project directory, you can run:
