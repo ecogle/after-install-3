@@ -1,23 +1,43 @@
+import React from "react";
 import "./App.css";
-import { useState } from "react";
-import Button from "./contents/components/Buttons/Button";
-import Display from "./contents/components/Display/Display";
-
-function App() {
-  const [counter, setCounter] = useState(0); //initialized the {counter} to 0 and makes {setCounter} available
-
-  //incrementCounter function is passed to the component via the onClickFuntion prop... see Button.js
-  const incrementCounter = (g) => setCounter(counter + g);
-
-  return (
-    <div className="App">
-      <Button onClickFunction={incrementCounter} increment={1} />
-      <Button onClickFunction={incrementCounter} increment={5} />
-      <Button onClickFunction={incrementCounter} increment={10} />
-      <Button onClickFunction={incrementCounter} increment={100} />
-      <Display message={counter} />
-    </div>
-  );
+import CardList from "./contents/components/CardList/CardList";
+import Form from "./contents/components/Form/Form";
+const testData = [
+  {
+    name: "Dan Abramov",
+    avatar_url: "https://avatars0.githubusercontent.com/u/810438?v=4",
+    company: "@facebook",
+  },
+  {
+    name: "Sophie Alpert",
+    avatar_url: "https://avatars2.githubusercontent.com/u/6820?v=4",
+    company: "Humu",
+  },
+  {
+    name: "Sebastian Markbåge",
+    avatar_url: "https://avatars2.githubusercontent.com/u/63648?v=4",
+    company: "Facebook",
+  },
+];
+class App extends React.Component {
+  //class field syntax
+  state = {
+    profiles: testData,
+  };
+  addNewProfile = (newProfile) => {
+    this.setState((prevState) => ({
+      profiles: [...prevState.profiles, newProfile],
+    }));
+  };
+  render() {
+    return (
+      <div>
+        <div className="header">{this.props.title}</div>
+        <Form onSubmit={this.addNewProfile} />
+        <CardList profiles={this.state.profiles} />
+      </div>
+    );
+  }
 }
 
 export default App;
